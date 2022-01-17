@@ -5,7 +5,8 @@
 // Runtime Environment's members available in the global scope.
 const { ethers } = require("ethers");
 const hre = require("hardhat");
-
+const Web3 = require("web3");
+let web3 = new Web3(hre.network.provider);
 async function main() {
   // Hardhat always runs the compile task when running scripts with its command
   // line interface.
@@ -18,8 +19,10 @@ async function main() {
   const Greeter = await hre.ethers.getContractFactory("Greeter");
   const greeter = await Greeter.deploy("Hello, Hardhat!");
   
-  console.log(greeter.greet, 'this is wrapper function')
-  console.log(greeter.setGreeting, 'this is setGreeting')
+  const chainId = await web3.eth.getChainId();
+  console.log(chainId, 'this is the chainId')
+  
+
   
   
   console.log(`you have deployed an nft contract to ${greeter.address}`)
