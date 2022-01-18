@@ -30,5 +30,4 @@ const main = async () => {
 }
 };
 
-// module.exports.tags = ['all', 'svg']
 main();
